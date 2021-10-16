@@ -1,19 +1,23 @@
 package org.springframework.samples.petclinic.owner;
 
+import org.junit.experimental.theories.DataPoints;
+import org.junit.experimental.theories.Theories;
+import org.junit.experimental.theories.Theory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import org.junit.runner.RunWith;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assumptions.assumeThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-class OwnerTest {
+@RunWith(Theories.class)
+public class OwnerTest {
 
 	private Owner owner;
+	private List<Pet> pets;
 
 	@BeforeEach
 	void setup() {
@@ -125,5 +129,41 @@ class OwnerTest {
 		}
 		owner.setPetsInternal(pets);
 		return pets;
+	}
+
+	public OwnerTest() {
+		pets = new ArrayList<>();
+		for (int i = 0; i < 4; i++){
+			String iValue = Integer.toString(i);
+			Pet newPet = new Pet();
+			newPet.setOwner(owner);
+			newPet.setName("pet_" + iValue);
+			pets.add(newPet);
+		}
+		owner = new Owner();
+		owner.setPetsInternal(new HashSet<Pet>(pets));
+	}
+	@DataPoints
+	public static int[] petIndexes = {3,2,1,0};
+
+	@DataPoints
+	public static Set[] petLists = {
+		new HashSet(Arrays.asList(1,2,3,0)),
+		new HashSet(Arrays.asList(3,1,2,0)),
+		new HashSet(Arrays.asList(0,1,2,3)),
+		new HashSet(Arrays.asList(1,2,0,3))
+	};
+
+	@Theory
+	public void checkSortedVisits(int index, Set indexList) {
+		assumeThat(indexList != null);
+		List indexArray = Arrays.asList(indexList.toArray());
+		List petList = new ArrayList();
+		petList.add(pets.get((int) indexArray.get(0)));
+		petList.add(pets.get((int) indexArray.get(1)));
+		petList.add(pets.get((int) indexArray.get(2)));
+		petList.add(pets.get((int) indexArray.get(3)));
+		owner.setPetsInternal(new HashSet<Pet>(petList));
+		assertThat(owner.getPets().get(index).equals(pets.get(index)));
 	}
 }
