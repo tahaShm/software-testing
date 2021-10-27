@@ -2,13 +2,10 @@ package org.springframework.samples.petclinic.owner;
 
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
-import org.springframework.beans.support.MutableSortDefinition;
-import org.springframework.beans.support.PropertyComparator;
 import org.springframework.samples.petclinic.utility.PetTimedCache;
 import org.springframework.samples.petclinic.visit.Visit;
 
 import javax.persistence.EntityNotFoundException;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -18,7 +15,6 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.mock;
 
 
 class PetManagerTest {
