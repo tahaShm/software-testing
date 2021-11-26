@@ -174,10 +174,24 @@ class TriCongruenceTest {
 		log.debug("Triangles identified as '{}'.", areCongruent ? "Congruent" : "Not Congruent");
 		Assertions.assertTrue(areCongruent);
 	}
-
+	
+	/**
+	 consider p = ab + bc'
+	 then p' = b' + a'c
+	 so all implicants = {ab, bc', b', a'c}
+	 unique true points:
+	 ab: {TTT},
+	 bc': {FTF},
+	 b': {FFF, TFF, TFT},
+	 A'c: {FTT}
+	 now CUTPNFP:
+	 UTP: {TTT, FTF},
+	 NFP: {FTT, TFT, FFF}
+	 as it is clear, "TFF" is in UTPC, however, it is not in CUTPNFP set -> CUTPNFP doesn't subsume UTPC
+	 */
 	private static boolean questionTwo(boolean a, boolean b, boolean c, boolean d, boolean e) {
 		boolean predicate = false;
-//		predicate = a predicate with any number of clauses
+//		predicate = ab + bc'
 		return predicate;
 	}
 }
