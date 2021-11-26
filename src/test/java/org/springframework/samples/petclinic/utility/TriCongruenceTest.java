@@ -87,7 +87,7 @@ class TriCongruenceTest {
 		}
 	)
 	@Test
-	public void line14CUTPNFPCoverageTestTFF() {
+	public void when_firstElementInTrianglesAreNotEqual_expect_notCongruent() {
 		Triangle t1 = new Triangle(2, 3, 4);
 		Triangle t2 = new Triangle(4, 3, 4);
 		boolean areCongruent = TriCongruence.areCongruent(t1, t2);
@@ -106,7 +106,7 @@ class TriCongruenceTest {
 		}
 	)
 	@Test
-	public void line14CUTPNFPCoverageTestFTF() {
+	public void when_secondElementInTrianglesAreNotEqual_expect_notCongruent() {
 		Triangle t1 = new Triangle(2, 3, 4);
 		Triangle t2 = new Triangle(2, 5, 4);
 		boolean areCongruent = TriCongruence.areCongruent(t1, t2);
@@ -125,7 +125,7 @@ class TriCongruenceTest {
 		}
 	)
 	@Test
-	public void line14CUTPNFPCoverageTestFFT() {
+	public void when_ThirdElementInTrianglesAreNotEqual_expect_notCongruent() {
 		Triangle t1 = new Triangle(2, 3, 4);
 		Triangle t2 = new Triangle(2, 3, 5);
 		boolean areCongruent = TriCongruence.areCongruent(t1, t2);
@@ -167,14 +167,14 @@ class TriCongruenceTest {
 		}
 	)
 	@Test
-	public void line14CUTPNFPCoverageTestFFF() {
+	public void when_allElementInTrianglesAreNotEqualAndElemsAreNegativeOrTriangleInequalityIsValid_expect_congruent() {
 		Triangle t1 = new Triangle(2, 3, 4);
 		Triangle t2 = new Triangle(2, 3, 4);
 		boolean areCongruent = TriCongruence.areCongruent(t1, t2);
 		log.debug("Triangles identified as '{}'.", areCongruent ? "Congruent" : "Not Congruent");
 		Assertions.assertTrue(areCongruent);
 	}
-	
+
 	/**
 	 consider p = ab + bc'
 	 then p' = b' + a'c
@@ -190,7 +190,7 @@ class TriCongruenceTest {
 	 as it is clear, "TFF" is in UTPC, however, it is not in CUTPNFP set -> CUTPNFP doesn't subsume UTPC
 	 */
 	private static boolean questionTwo(boolean a, boolean b, boolean c, boolean d, boolean e) {
-		boolean predicate = false;
+		boolean predicate = a && b || b && !c;
 //		predicate = ab + bc'
 		return predicate;
 	}
