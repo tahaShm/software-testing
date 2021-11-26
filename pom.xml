@@ -139,9 +139,9 @@
       <optional>true</optional>
     </dependency>
     <dependency>
-      <groupId>com.github.mryf32</groupId>
+      <groupId>com.github.mryf323</groupId>
       <artifactId>tractatus</artifactId>
-      <version>1.0.4</version>
+      <version>1.0.2</version>
     </dependency>
     <dependency>
       <groupId>org.jsoup</groupId>

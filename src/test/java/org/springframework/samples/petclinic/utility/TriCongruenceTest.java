@@ -13,19 +13,42 @@ class TriCongruenceTest {
 
 	private static final Logger log = LoggerFactory.getLogger(TriCongruenceTest.class);
 
+	@ClauseDefinition(clause = 'a', def = "t1arr[0] < 0")
+	@ClauseDefinition(clause = 'b', def = "t1arr[0] + t1arr[1] < t1arr[2]")
+	@ClauseCoverage(
+		predicate = "a || b",
+		valuations = {
+			@Valuation(clause = 'a', valuation = false),
+			@Valuation(clause = 'b', valuation = false)
+		}
+	)
 	@Test
-	public void sampleTest() {
-		Triangle t1 = new Triangle(2, 3, 7);
-		Triangle t2 = new Triangle(7, 2, 3);
+	public void when_sidesAreEqualAndOneSideIsNegativeAndTriangleInequalityIsInValid_expect_notCongruent() {
+		Triangle t1 = new Triangle(-4, 3, 5);
+		Triangle t2 = new Triangle(3, -4, 5);
 		boolean areCongruent = TriCongruence.areCongruent(t1, t2);
 		log.debug("Triangles identified as '{}'.", areCongruent ? "Congruent" : "Not Congruent");
 		Assertions.assertFalse(areCongruent);
 	}
 
-	/**
-	 * TODO
-	 * explain your answer here
-	 */
+	@ClauseDefinition(clause = 'a', def = "t1arr[0] < 0")
+	@ClauseDefinition(clause = 'b', def = "t1arr[0] + t1arr[1] < t1arr[2]")
+	@ClauseCoverage(
+		predicate = "a || b",
+		valuations = {
+			@Valuation(clause = 'a', valuation = true),
+			@Valuation(clause = 'b', valuation = true)
+		}
+	)
+	@Test
+	public void when_sidesAreEqualAndAllSidesArePositiveAndTriangleInequalityIsValid_expect_congruent() {
+		Triangle t1 = new Triangle(4, 3, 5);
+		Triangle t2 = new Triangle(3, 4, 5);
+		boolean areCongruent = TriCongruence.areCongruent(t1, t2);
+		log.debug("Triangles identified as '{}'.", areCongruent ? "Congruent" : "Not Congruent");
+		Assertions.assertTrue(areCongruent);
+	}
+
 	private static boolean questionTwo(boolean a, boolean b, boolean c, boolean d, boolean e) {
 		boolean predicate = false;
 //		predicate = a predicate with any number of clauses
