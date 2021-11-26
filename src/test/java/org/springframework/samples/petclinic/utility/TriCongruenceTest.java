@@ -19,7 +19,7 @@ class TriCongruenceTest {
 	@ClauseDefinition(clause = 'a', def = "t1arr[0] < 0")
 	@ClauseDefinition(clause = 'b', def = "t1arr[0] + t1arr[1] < t1arr[2]")
 	@ClauseCoverage(
-		predicate = "a || b",
+		predicate = "a + b",
 		valuations = {
 			@Valuation(clause = 'a', valuation = false),
 			@Valuation(clause = 'b', valuation = false)
@@ -28,7 +28,7 @@ class TriCongruenceTest {
 	@CACC(
 		majorClause = 'a',
 		predicateValue = false,
-		predicate = "a || b",
+		predicate = "a + b",
 		valuations = {
 			@Valuation(clause = 'a', valuation = false),
 			@Valuation(clause = 'b', valuation = false)
@@ -46,7 +46,7 @@ class TriCongruenceTest {
 	@ClauseDefinition(clause = 'a', def = "t1arr[0] < 0")
 	@ClauseDefinition(clause = 'b', def = "t1arr[0] + t1arr[1] < t1arr[2]")
 	@ClauseCoverage(
-		predicate = "a || b",
+		predicate = "a + b",
 		valuations = {
 			@Valuation(clause = 'a', valuation = true),
 			@Valuation(clause = 'b', valuation = true)
@@ -55,7 +55,7 @@ class TriCongruenceTest {
 	@CACC(
 		majorClause = 'a',
 		predicateValue = true,
-		predicate = "a || b",
+		predicate = "a + b",
 		valuations = {
 			@Valuation(clause = 'a', valuation = true),
 			@Valuation(clause = 'b', valuation = true)
