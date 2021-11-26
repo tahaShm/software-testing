@@ -14,10 +14,19 @@ class TriCongruenceTest {
 	private static final Logger log = LoggerFactory.getLogger(TriCongruenceTest.class);
 
 
-	/** CC **/
+	/** CC **/ 	/** CCAC **/
 	@ClauseDefinition(clause = 'a', def = "t1arr[0] < 0")
 	@ClauseDefinition(clause = 'b', def = "t1arr[0] + t1arr[1] < t1arr[2]")
 	@ClauseCoverage(
+		predicate = "a || b",
+		valuations = {
+			@Valuation(clause = 'a', valuation = false),
+			@Valuation(clause = 'b', valuation = false)
+		}
+	)
+	@CACC(
+		majorClause = 'a',
+		predicateValue = false,
 		predicate = "a || b",
 		valuations = {
 			@Valuation(clause = 'a', valuation = false),
@@ -36,6 +45,15 @@ class TriCongruenceTest {
 	@ClauseDefinition(clause = 'a', def = "t1arr[0] < 0")
 	@ClauseDefinition(clause = 'b', def = "t1arr[0] + t1arr[1] < t1arr[2]")
 	@ClauseCoverage(
+		predicate = "a || b",
+		valuations = {
+			@Valuation(clause = 'a', valuation = true),
+			@Valuation(clause = 'b', valuation = true)
+		}
+	)
+	@CACC(
+		majorClause = 'a',
+		predicateValue = true,
 		predicate = "a || b",
 		valuations = {
 			@Valuation(clause = 'a', valuation = true),
