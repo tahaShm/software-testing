@@ -14,7 +14,8 @@ class TriCongruenceTest {
 	private static final Logger log = LoggerFactory.getLogger(TriCongruenceTest.class);
 
 
-	/** CC **/ 	/** CCAC **/
+	/** CC and CACC **/
+
 	@ClauseDefinition(clause = 'a', def = "t1arr[0] < 0")
 	@ClauseDefinition(clause = 'b', def = "t1arr[0] + t1arr[1] < t1arr[2]")
 	@ClauseCoverage(
@@ -69,7 +70,9 @@ class TriCongruenceTest {
 		Assertions.assertTrue(areCongruent);
 	}
 
-	/** CUTPNFP **/
+	/**
+	 * CUTPNFP
+	 **/
 	// For a: TFF -> UTP, FFF -> NFP
 	// For a: FTF -> UTP, FFF -> NFP
 	// For a: FFT -> UTP, FFF -> NFP
