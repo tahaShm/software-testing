@@ -1,3 +1,14 @@
+# Software Testing
+This repository consists of software testing course projects. each phase is defined in a specific branch.
+projects include:
+
+- working with JUnit framework
+- test doubles
+- graph-based testing
+- graph and logic coverage
+- input space partitioning
+- API tests
+
 # Spring PetClinic Sample Application [![Build Status](https://travis-ci.org/spring-projects/spring-petclinic.png?branch=main)](https://travis-ci.org/spring-projects/spring-petclinic/)
 
 ## Understanding the Spring Petclinic application with a few diagrams
